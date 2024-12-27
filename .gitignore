@@ -4,10 +4,7 @@ target/
 !**/src/main/**/target/
 !**/src/test/**/target/
 
-#deployment
-docker-compose.yml
-Dockerfile
-jenkinsfile
+Jenkinsfile
 
 ### STS ###
 .apt_generated
