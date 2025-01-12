@@ -1,0 +1,37 @@
+package com.example.demo.controller;
+
+import com.example.demo.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+@RequestMapping("/user")
+public class UserController {
+
+    @Autowired
+    private UserService userService;
+
+    @PostMapping("/register")
+    public ResponseEntity<String> userRegister(@RequestBody UserRegistrationRequest request) {
+        try {
+            userService.userRegister(request.getUsername(), request.getPassword(), request.getEmail());
+            return ResponseEntity.ok("User registration successful");
+        } catch (RuntimeException e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<String> userLogin(@RequestBody UserLoginRequest request) {
+        try {
+            userService.userRegister(request.getUsername(), request.getPassword(), request.getEmail());
+            return ResponseEntity.ok("User Login successful");
+        } catch (RuntimeException e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
+}
