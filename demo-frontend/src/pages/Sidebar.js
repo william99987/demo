@@ -44,22 +44,40 @@ const SigninModal = ({ showSigninModal, toggleSigninModal}) => {
 const SignupModal = ({ showSignupModal, toggleSignupModal}) => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [username, setUsername] = useState("");
+    const [message, setMessage] = useState("");
 
     const handleChange = (e) => {
         if (e.target.id === "email") {
             setEmail(e.target.value);
         }
-        else {
+        else if (e.target.id === "password") {
             setPassword(e.target.value);
+        }
+        else {
+            setUsername(e.target.value);
         }
     }
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        axios.post("http://172.16.169.128:8080/demo-0.0.1/register",{email: email, password: password}).then(
-            (response) => console.log(response)
-        ).catch((error) => console.log(error)
-        );
+
+        const requestBody = {
+            username: username,
+            password: password,
+            email: email
+        };
+        try {
+            const response = axios.post("http://172.16.169.128:8080/demo-0.0.1/user/register", requestBody);
+            setMessage("User created successfully");
+        } catch (error) {
+            if(error.response){
+                setMessage('Error: ${error.response.data}');
+            } else {
+                setMessage('An error occurred. Please try again later.');
+            }
+        };
+
         setEmail("");
         setPassword("");
     }
@@ -77,19 +95,30 @@ const SignupModal = ({ showSignupModal, toggleSignupModal}) => {
                         </div>
                         <div className={"modal-body"}>
                             <form>
+
+                                <div className={"mb-3"}>
+                                    <label htmlFor={"username"} className={"form-label"}>User name</label>
+                                    <input type={"username"} className={"form-control"} id={"username"}
+                                           onChange={handleChange} placeholder={"Enter your Username"}/>
+                                </div>
+
                                 <div className={"mb-3"}>
                                     <label htmlFor={"email"} className={"form-label"}>Email address</label>
-                                    <input type={"email"} className={"form-control"} id={"email"} onChange={handleChange} placeholder={"Enter your email"} />
+                                    <input type={"email"} className={"form-control"} id={"email"}
+                                           onChange={handleChange} placeholder={"Enter your email"}/>
                                 </div>
                                 <div className={"mb-3"}>
                                     <label htmlFor={"password"} className={"form-label"}>Password</label>
-                                    <input type={"password"} className={"form-control"} id={"password"} onChange={handleChange} placeholder={"Enter your password"} />
+                                    <input type={"password"} className={"form-control"} id={"password"}
+                                           onChange={handleChange} placeholder={"Enter your password"}/>
                                 </div>
-                                <button type={"submit"} className={"btn btn-dark"} onClick={handleSubmit}>Submit</button>
+                                <button type={"submit"} className={"btn btn-dark"} onClick={handleSubmit}>Submit
+                                </button>
                             </form>
                         </div>
                         <div className={"modal-footer"}>
-                            <button type={"button"} className={"btn btn-dark"} onClick={toggleSignupModal}>Close</button>
+                            <button type={"button"} className={"btn btn-dark"} onClick={toggleSignupModal}>Close
+                            </button>
                         </div>
                     </div>
                 </div>

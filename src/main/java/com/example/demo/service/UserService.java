@@ -3,6 +3,10 @@ package com.example.demo.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
+import java.util.Optional;
+import com.example.demo.repository.UserRepository;
+import com.example.demo.entity.User;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Service
 public class UserService {
@@ -39,7 +43,7 @@ public class UserService {
             throw new RuntimeException("Username already exists");
         }
 
-        String encodedPassword = passwordEncode.encode(password);
+        String encodedPassword = passwordEncoder.encode(password);
         User user = new User(username, encodedPassword, email);
         return userRepository.save(user);
     }

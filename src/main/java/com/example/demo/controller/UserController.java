@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import com.example.demo.entity.User;
 
 @RestController
 @RequestMapping("/user")
@@ -16,7 +17,7 @@ public class UserController {
     private UserService userService;
 
     @PostMapping("/register")
-    public ResponseEntity<String> userRegister(@RequestBody UserRegistrationRequest request) {
+    public ResponseEntity<String> userRegister(@RequestBody User request) {
         try {
             userService.userRegister(request.getUsername(), request.getPassword(), request.getEmail());
             return ResponseEntity.ok("User registration successful");
@@ -26,7 +27,7 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<String> userLogin(@RequestBody UserLoginRequest request) {
+    public ResponseEntity<String> userLogin(@RequestBody User request) {
         try {
             userService.userRegister(request.getUsername(), request.getPassword(), request.getEmail());
             return ResponseEntity.ok("User Login successful");

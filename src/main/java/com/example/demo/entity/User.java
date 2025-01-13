@@ -1,21 +1,24 @@
 package com.example.demo.entity;
-import org.springframework.data.annotation.Id;
-import org.springframework.stereotype.Component;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import org.springframework.beans.factory.annotation.Autowired;
 
 @Entity
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.Identity)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String username;
     private String password;
     private String email;
+
+    public User() {
+
+    }
 
     public User(String username, String password, String email) {
         this.username = username;
@@ -50,6 +53,7 @@ public class User {
     public void setPassword(String password) {
         this.password = password;
     }
+
     public void setEmail(String email) {
         this.email = email;
     }
