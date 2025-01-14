@@ -16,6 +16,11 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+    @GetMapping("/bye")
+    public String sayBye() {
+        return "Bye";
+    }
+
     @PostMapping("/register")
     public ResponseEntity<String> userRegister(@RequestBody User request) {
         try {
