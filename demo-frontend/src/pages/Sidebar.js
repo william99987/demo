@@ -72,6 +72,7 @@ const SignupModal = ({ showSignupModal, toggleSignupModal}) => {
             setMessage("User created successfully");
         } catch (error) {
             if(error.response){
+                console.log("Sign up post error");
                 setMessage('Error: ${error.response.data}');
             } else {
                 setMessage('An error occurred. Please try again later.');

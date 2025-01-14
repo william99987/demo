@@ -18,6 +18,7 @@ public class UserController {
     @PostMapping("/register")
     public ResponseEntity<String> userRegister(@RequestBody User request) {
         try {
+            System.out.println("Hi User!!!!");
             userService.userRegister(request.getUsername(), request.getPassword(), request.getEmail());
             return ResponseEntity.ok("User registration successful");
         } catch (RuntimeException e) {
