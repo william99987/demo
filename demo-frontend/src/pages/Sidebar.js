@@ -68,7 +68,7 @@ const SignupModal = ({ showSignupModal, toggleSignupModal}) => {
             email: email
         };
         try {
-            const response = axios.post("/demo-0.0.1/user/register", requestBody);
+            const response = axios.post("http://172.16.169.128:80/demo-0.0.1/user/register", requestBody);
             setMessage("User created successfully");
         } catch (error) {
             if(error.response){
