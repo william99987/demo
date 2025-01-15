@@ -56,7 +56,6 @@ services:
       - app-network
     depends_on:
       - redis
-      - mysql
 
 networks:
   app-network:
