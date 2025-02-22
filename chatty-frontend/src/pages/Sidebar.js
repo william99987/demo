@@ -2,6 +2,7 @@ import { Button } from "bootstrap";
 import {useState, React} from "react";
 import axios from "axios";
 
+
 const SigninModal = ({ showSigninModal, toggleSigninModal}) => {
     return (
         <div className={"container"}>
@@ -67,8 +68,10 @@ const SignupModal = ({ showSignupModal, toggleSignupModal}) => {
             password: password,
             email: email
         };
+
         try {
-            const response = axios.post("http://172.16.169.128:80/demo-0.0.1/user/register", requestBody);
+            //localhost:80/demo-0.0.1/register
+            const response = axios.post("http://localhost:8080/register", requestBody);
             setMessage("User created successfully");
         } catch (error) {
             if(error.response){
@@ -136,7 +139,7 @@ const Sidebar = () => {
     const toggleSignupModal = () => setShowSignupModal(!showSignupModal);
 
     return (
-    <div className={"bg-dark container"}>
+    <div className={"bg-dark vh-100 border-black container-fluid"}>
         <h2>Chatty</h2>
         <button type={"button"} className={"btn btn-dark mb-4"}>Create a Chatty</button>
         <div className={"d-flex flex-column"}>

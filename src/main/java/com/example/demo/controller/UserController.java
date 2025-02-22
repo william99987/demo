@@ -10,7 +10,7 @@ import org.springframework.stereotype.Controller;
 
 @RestController
 //@RequestMapping("/demo-0.0.1/user")
-@CrossOrigin(origins = "http://10.30.54.23:3000")
+@CrossOrigin(origins = "http://localhost:3000")
 public class UserController {
 
     @Autowired
@@ -25,12 +25,16 @@ public class UserController {
     public ResponseEntity<String> userRegister(@RequestBody User request) {
         try {
             System.out.println("Hi User!!!!");
+            System.out.println(request.getUsername());
             userService.userRegister(request.getUsername(), request.getPassword(), request.getEmail());
+            System.out.println("Fuck User!!!!");
             return ResponseEntity.ok("User registration successful");
         } catch (RuntimeException e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
+
+
 
     @PostMapping("/login")
     public ResponseEntity<String> userLogin(@RequestBody User request) {

@@ -1,0 +1,7 @@
+.slider-container {
+  width: 85%;  /* Adjust width based on your layout */
+  max-width: 1200px;
+  margin: auto;
+  position: relative;
+  /*overflow: hidden; !* Prevents elements from being pushed outside *!*/
+}
